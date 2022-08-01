@@ -23,16 +23,25 @@ struct QuizBrain {
     var questionNumber = 0
     var score = 0
     
-    mutating func checkAnswer() -> Bool {
-        let quizCorrectAnswer = quiz[questionNumber].correctAnswer
-        if quiz[questionNumber].answer.contains(quizCorrectAnswer){
+    mutating func checkAnswer(_ userAnswer: String) -> Bool {
+        if userAnswer == quiz[questionNumber].correctAnswer{
             score += 1
-            print(quizCorrectAnswer)
             return true
         } else {
             return false
         }
     }
+    
+//    mutating func checkAnswer() -> Bool {
+//        let quizCorrectAnswer = quiz[questionNumber].correctAnswer
+//        if quiz[questionNumber].answer.contains(quizCorrectAnswer){
+//            score += 1
+//            print(quizCorrectAnswer)
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
     
     func choiceInUI(order: Int) -> String{
         return quiz[questionNumber].answer[order]
