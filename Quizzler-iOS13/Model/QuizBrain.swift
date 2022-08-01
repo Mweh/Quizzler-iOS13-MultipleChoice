@@ -32,17 +32,6 @@ struct QuizBrain {
         }
     }
     
-//    mutating func checkAnswer() -> Bool {
-//        let quizCorrectAnswer = quiz[questionNumber].correctAnswer
-//        if quiz[questionNumber].answer.contains(quizCorrectAnswer){
-//            score += 1
-//            print(quizCorrectAnswer)
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-    
     func choiceInUI(order: Int) -> String{
         return quiz[questionNumber].answer[order]
     }
@@ -59,7 +48,7 @@ struct QuizBrain {
         let progress = Float(questionNumber + 1) / Float(quiz.count)
         return progress
     }
-    
+
     mutating func nextQuestion(){
         if questionNumber < quiz.count - 1{
             questionNumber += 1
