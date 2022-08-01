@@ -3,9 +3,11 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var scoreLabel: UILabel!
+    
     @IBOutlet weak var questionTextLabel: UILabel!
-    @IBOutlet weak var trueButtonLabel: UIButton!
-    @IBOutlet weak var falseButtonLabel: UIButton!
+    @IBOutlet weak var choice1ButtonLabel: UIButton!
+    @IBOutlet weak var choice2ButtonLabel: UIButton!
+    @IBOutlet weak var choice3ButtonLabel: UIButton!
     @IBOutlet weak var progressBarLabel: UIProgressView!
     
     var quizBrain = QuizBrain()
@@ -18,8 +20,7 @@ class ViewController: UIViewController {
 
     @IBAction func answerButtonAction(_ sender: UIButton) {
         updateUI()
-        let userAnswer = sender.currentTitle!
-        let userGotItRight = quizBrain.checkAnswer(userAnswer)
+        let userGotItRight = quizBrain.checkAnswer()
         if userGotItRight {
             sender.backgroundColor = UIColor.green
         } else {
@@ -36,8 +37,14 @@ class ViewController: UIViewController {
         questionTextLabel.text = quizBrain.getQuestionText()
         progressBarLabel.progress = quizBrain.getProgress()
         scoreLabel.text = "Score: \(quizBrain.getScore())"
-        trueButtonLabel.backgroundColor = UIColor.clear
-        falseButtonLabel.backgroundColor = UIColor.clear
+        
+        choice1ButtonLabel.setTitle(quizBrain.choiceInUI(order: 0), for: .normal)
+        choice2ButtonLabel.setTitle(quizBrain.choiceInUI(order: 1), for: .normal)
+        choice3ButtonLabel.setTitle(quizBrain.choiceInUI(order: 2), for: .normal)
+        
+        choice1ButtonLabel.backgroundColor = UIColor.clear
+        choice2ButtonLabel.backgroundColor = UIColor.clear
+        choice3ButtonLabel.backgroundColor = UIColor.clear
     }
     
 }
